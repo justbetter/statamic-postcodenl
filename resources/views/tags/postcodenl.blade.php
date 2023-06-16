@@ -5,17 +5,23 @@
     let streetElement = document.getElementById('{{ $postcodenlFields['postcodenl_street'] ?? '' }}');
     let cityElement = document.getElementById('{{ $postcodenlFields['postcodenl_city'] ?? '' }}');
 
-    zipcodeElement.addEventListener('change', () => {
-        window.getAddressFromPostcodeservice(zipcodeElement.value, houseNumberElement.value, houseNumberAdditionElement.value ?? '');
-    });
+    if(zipcodeElement && zipcodeElement.length !== 0){
+        zipcodeElement.addEventListener('change', () => {
+            window.getAddressFromPostcodeservice(zipcodeElement.value, houseNumberElement.value, houseNumberAdditionElement && houseNumberAdditionElement.value ? houseNumberAdditionElement.value : '');
+        });
+    }
 
-    houseNumberElement.addEventListener('change', () => {
-        window.getAddressFromPostcodeservice(zipcodeElement.value, houseNumberElement.value, houseNumberAdditionElement.value ?? '');
-    });
+    if(houseNumberElement && houseNumberElement.length !== 0) {
+        houseNumberElement.addEventListener('change', () => {
+            window.getAddressFromPostcodeservice(zipcodeElement.value, houseNumberElement.value, houseNumberAdditionElement && houseNumberAdditionElement.value ? houseNumberAdditionElement.value : '');
+        });
+    }
 
-    houseNumberAdditionElement.addEventListener('change', () => {
-        window.getAddressFromPostcodeservice(zipcodeElement.value, houseNumberElement.value, houseNumberAdditionElement.value ?? '');
-    });
+    if(houseNumberAdditionElement && houseNumberAdditionElement.length !== 0) {
+        houseNumberAdditionElement.addEventListener('change', () => {
+            window.getAddressFromPostcodeservice(zipcodeElement.value, houseNumberElement.value, houseNumberAdditionElement && houseNumberAdditionElement.value ? houseNumberAdditionElement.value : '');
+        });
+    }
 
     if (!window.getAddressFromPostcodeservice) {
         window.getAddressFromPostcodeservice = async function(zipcode, houseNumber, houseNumberAddition) {
