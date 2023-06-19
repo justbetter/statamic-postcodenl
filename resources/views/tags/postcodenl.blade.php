@@ -50,8 +50,8 @@
                     return;
                 }
 
-                streetElement.value = responseData.city
-                cityElement.value = responseData.street
+                streetElement.value = responseData.street
+                cityElement.value = responseData.city
             };
         }
     }
