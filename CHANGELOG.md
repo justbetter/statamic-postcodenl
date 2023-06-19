@@ -1,6 +1,10 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/justbetter/statamic-postcodenl/compare/1.0.1...master)
+[Unreleased changes](https://github.com/justbetter/statamic-postcodenl/compare/1.0.2...master)
+## [1.0.2](https://github.com/justbetter/statamic-postcodenl/releases/tag/1.0.2) - 2023-06-19
+
+**Full Changelog**: https://github.com/justbetter/statamic-postcodenl/compare/1.0.1...1.0.2
+
 ## [1.0.1](https://github.com/justbetter/statamic-postcodenl/releases/tag/1.0.1) - 2023-06-16
 
 **Full Changelog**: https://github.com/justbetter/statamic-postcodenl/compare/1.0.0...1.0.1
