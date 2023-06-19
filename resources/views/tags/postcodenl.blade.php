@@ -29,6 +29,9 @@
                 return;
             }
 
+            streetElement.disabled = true;
+            cityElement.disabled = true;
+
             let xhr = new XMLHttpRequest();
             let data = {
                 postcode: zipcode,
@@ -40,18 +43,25 @@
             xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
             xhr.send(JSON.stringify(data));
             xhr.onload = function () {
+                streetElement.disabled = false;
+                cityElement.disabled = false;
+
                 if (xhr.readyState !== xhr.DONE) {
+                    streetElement.value = '';
+                    cityElement.value = '';
                     return;
                 }
 
                 let responseData = JSON.parse(xhr.response);
 
                 if (!responseData?.city || !responseData?.street) {
+                    streetElement.value = '';
+                    cityElement.value = '';
                     return;
                 }
 
-                streetElement.value = responseData.city
-                cityElement.value = responseData.street
+                streetElement.value = responseData.city;
+                cityElement.value = responseData.street;
             };
         }
     }
