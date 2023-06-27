@@ -21,13 +21,18 @@ class Postcodenl extends Text
     {
         $config = parent::configFieldItems();
 
-        $config['postcodenl_type'] = [
-            'display' => __('Field type'),
-            'instructions' => __('Select the Postcode.nl field type'),
-            'type' => 'select',
-            'default' => $this->postcodenlDefaultFieldType,
-            'width' => 50,
-            'options' => $this->postcodenlFieldTypes
+        $config[] = [
+            'display' => __('Postcode.nl type'),
+            'fields' => [
+                'postcodenl_type' => [
+                    'display' => __('Field type'),
+                    'instructions' => __('Select the Postcode.nl field type'),
+                    'type' => 'select',
+                    'default' => $this->postcodenlDefaultFieldType,
+                    'width' => 50,
+                    'options' => $this->postcodenlFieldTypes
+                ]
+            ]
         ];
 
         return $config;
