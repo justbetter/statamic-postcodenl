@@ -14,7 +14,7 @@ class ServiceProvider extends AddonServiceProvider
     ];
 
     protected $scripts = [
-        __DIR__ . '/../dist/js/statamic-postcodeservice.js'
+        __DIR__ . '/../dist/js/statamic-postcodenl.js'
     ];
 
     public function register(): void
