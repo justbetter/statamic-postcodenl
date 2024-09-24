@@ -1,3 +1,7 @@
+<a href="https://github.com/justbetter/statamic-postcodenl" title="JustBetter">
+    <img src="./art/banner.png" alt="Banner">
+</a>
+
 # Statamic Postcode.nl
 
 > This addon adds Postcode.nl field types to the Form Builder.
