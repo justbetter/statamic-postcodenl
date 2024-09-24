@@ -1,6 +1,14 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/justbetter/statamic-postcodenl/compare/3.0.0...master)
+[Unreleased changes](https://github.com/justbetter/statamic-postcodenl/compare/3.0.1...master)
+## [3.0.1](https://github.com/justbetter/statamic-postcodenl/releases/tag/3.0.1) - 2024-09-24
+
+### What's Changed
+* Added banner by @kevinmeijer97 in https://github.com/justbetter/statamic-postcodenl/pull/6
+
+
+**Full Changelog**: https://github.com/justbetter/statamic-postcodenl/compare/3.0.0...3.0.1
+
 ## [3.0.0](https://github.com/justbetter/statamic-postcodenl/releases/tag/3.0.0) - 2024-06-25
 
 ### What's Changed
