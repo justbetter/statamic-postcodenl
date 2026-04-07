@@ -1,6 +1,11 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/justbetter/statamic-postcodenl/compare/3.0.1...master)
+[Unreleased changes](https://github.com/justbetter/statamic-postcodenl/compare/4.0.0...master)
+## [4.0.0](https://github.com/justbetter/statamic-postcodenl/releases/tag/4.0.0) - 2026-04-07
+
+### What's Changed
+- Update to statamic 6 and refactor to alpinejs(#7)
+
 ## [3.0.1](https://github.com/justbetter/statamic-postcodenl/releases/tag/3.0.1) - 2024-09-24
 
 ### What's Changed
