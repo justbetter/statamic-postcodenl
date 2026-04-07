@@ -3,20 +3,18 @@
 namespace JustBetter\StatamicPostcodenl;
 
 use Illuminate\Support\Facades\Http;
-use JustBetter\StatamicPostcodenl\Tags\PostcodenlTag;
 use Statamic\Providers\AddonServiceProvider;
 use JustBetter\StatamicPostcodenl\Fieldtypes\Postcodenl;
 
 class ServiceProvider extends AddonServiceProvider
 {
-    protected $tags = [
-        PostcodenlTag::class,
+    protected $vite = [
+        'input' => [
+            'resources/js/cp.js',
+        ],
+        'publicDirectory' => 'resources/dist',
     ];
-
-    protected $scripts = [
-        __DIR__ . '/../dist/js/statamic-postcodenl.js'
-    ];
-
+    
     public function register(): void
     {
         $this->registerConfig();

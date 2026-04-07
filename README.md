@@ -37,19 +37,18 @@ When selecting the Postcode.nl field you need to select the according field type
 
 Make sure to add all the required field types to your form as they are needed for this to work.
 
-### Tags
-
-To add this functionality to your form you have to use our Postcode.nl tag.
-At the bottom of your form view you need to add the following tag:
-
-#### Antlers
-``` php
-{{ postcodenl:initPostcodenl :formId="form_handle" }}
+### Usage
+First of all import the javascript in your projects javascript file:
+```js
+import './../../vendor/justbetter/statamic-postcodenl/resources/js/postcodenl.js'
 ```
-#### Blade
-``` php
-{!! Statamic::tag('postcodenl:initPostcodenl')->param('formId', $form->handle)->fetch() !!}
+After that, you can use the alpinejs x-data on a wrapper of the fields:
+```html
+<div
+    x-data="postcodeNL('zipcode', 'house_number', 'house_number_addition', 'street', 'city')"
+>
 ```
+The parameters are the id's of the postcodeNL fields. This can be left empty if the examples above are used as ID.
 
 As the Postcode.nl field types are an extend of the normal text field type, you can use this type the same way as the text field type for your forms.
 For example you could still look at the `input_type` field to determine the field type you need to load into your form.
