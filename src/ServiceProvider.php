@@ -39,12 +39,6 @@ class ServiceProvider extends AddonServiceProvider
 
     public function bootPublishables() : self
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'justbetter-postcodenl');
-
-        $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/justbetter-postcodenl'),
-        ], 'views');
-
         $this->publishes([
             __DIR__.'/../config/justbetter-postcodenl.php' => config_path('justbetter-postcodenl.php'),
         ], 'config');
