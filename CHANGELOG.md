@@ -1,6 +1,11 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/justbetter/statamic-postcodenl/compare/4.0.0...master)
+[Unreleased changes](https://github.com/justbetter/statamic-postcodenl/compare/4.0.1...master)
+## [4.0.1](https://github.com/justbetter/statamic-postcodenl/releases/tag/4.0.1) - 2026-04-09
+
+### Fixed
+- Remove views load (#8)
+
 ## [4.0.0](https://github.com/justbetter/statamic-postcodenl/releases/tag/4.0.0) - 2026-04-07
 
 ### What's Changed
