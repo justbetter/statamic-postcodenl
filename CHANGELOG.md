@@ -1,6 +1,11 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/justbetter/statamic-postcodenl/compare/4.0.1...master)
+[Unreleased changes](https://github.com/justbetter/statamic-postcodenl/compare/4.0.2...master)
+## [4.0.2](https://github.com/justbetter/statamic-postcodenl/releases/tag/4.0.2) - 2026-04-09
+
+### Fixed
+- Added fix for CP inputs (#9)
+
 ## [4.0.1](https://github.com/justbetter/statamic-postcodenl/releases/tag/4.0.1) - 2026-04-09
 
 ### Fixed
