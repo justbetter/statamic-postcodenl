@@ -4,118 +4,113 @@ export default (zipcodeField = 'zipcode', houseNumberField = 'house_number', hou
     houseNumberAdditionField,
     streetField,
     cityField,
-    zipcodeElement: null,
-    houseNumberElement: null,
-    houseNumberAdditionElement: null,
-    streetElement: null,
-    cityElement: null,
 
     init() {
-        this.zipcodeElement = this.getElement(this.zipcodeField)
-        this.houseNumberElement = this.getElement(this.houseNumberField)
-        this.houseNumberAdditionElement = this.getElement(this.houseNumberAdditionField)
-        this.streetElement = this.getElement(this.streetField)
-        this.cityElement = this.getElement(this.cityField)
+        let watchedFields = new Set(
+            [this.zipcodeField, this.houseNumberField, this.houseNumberAdditionField].filter(Boolean),
+        )
 
-        this.bindChange(this.zipcodeElement)
-        this.bindChange(this.houseNumberElement)
-        this.bindChange(this.houseNumberAdditionElement)
+        this.$el.addEventListener('change', (event) => {
+            let target = event.target
+
+            if (target?.id && watchedFields.has(target.id)) {
+                this.lookup()
+            }
+        })
     },
 
     getElement(field) {
-        let element = null
-
-        if (field) {
-            element = document.getElementById(field)
+        if (!field) {
+            return null
         }
 
-        return element
+        let selector = `#${CSS.escape(field)}`
+
+        return this.$el.querySelector(selector) ?? window.document.getElementById(field)
     },
 
-    bindChange(element) {
-        if (element) {
-            element.addEventListener('change', () => {
-                this.lookup()
-            })
+    getHouseNumberAddition(houseNumberAdditionElement) {
+        if (houseNumberAdditionElement && houseNumberAdditionElement.value) {
+            return houseNumberAdditionElement.value
         }
+
+        return ''
     },
 
-    getHouseNumberAddition() {
-        let houseNumberAddition = ''
-
-        if (this.houseNumberAdditionElement && this.houseNumberAdditionElement.value) {
-            houseNumberAddition = this.houseNumberAdditionElement.value
+    clearAddress(streetElement, cityElement) {
+        if (streetElement) {
+            streetElement.value = ''
         }
 
-        return houseNumberAddition
-    },
-
-    clearAddress() {
-        if (this.streetElement) {
-            this.streetElement.value = ''
-        }
-
-        if (this.cityElement) {
-            this.cityElement.value = ''
+        if (cityElement) {
+            cityElement.value = ''
         }
     },
 
-    setAddressState(disabled) {
-        if (this.streetElement) {
-            this.streetElement.disabled = disabled
+    setAddressState(streetElement, cityElement, disabled) {
+        if (streetElement) {
+            streetElement.disabled = disabled
         }
 
-        if (this.cityElement) {
-            this.cityElement.disabled = disabled
+        if (cityElement) {
+            cityElement.disabled = disabled
         }
     },
 
     async lookup() {
-        let zipcode = this.zipcodeElement ? this.zipcodeElement.value : ''
-        let houseNumber = this.houseNumberElement ? this.houseNumberElement.value : ''
-        let houseNumberAddition = this.getHouseNumberAddition()
+        let zipcodeElement = this.getElement(this.zipcodeField)
+        let houseNumberElement = this.getElement(this.houseNumberField)
+        let houseNumberAdditionElement = this.getElement(this.houseNumberAdditionField)
+        let streetElement = this.getElement(this.streetField)
+        let cityElement = this.getElement(this.cityField)
+
+        let zipcode = zipcodeElement ? zipcodeElement.value : ''
+        let houseNumber = houseNumberElement ? houseNumberElement.value : ''
+        let houseNumberAddition = this.getHouseNumberAddition(houseNumberAdditionElement)
 
         let canLookup = Boolean(
             zipcode &&
             houseNumber &&
-            this.streetElement &&
-            this.cityElement
+            streetElement &&
+            cityElement
         )
 
-        if (canLookup) {
-            this.setAddressState(true)
+        if (!canLookup) {
+            return
+        }
 
-            let responseData = null
+        this.setAddressState(streetElement, cityElement, true)
 
-            try {
-                let response = await fetch('/api/postcodenl', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        postcode: zipcode,
-                        house_number: houseNumber,
-                        house_number_addition: houseNumberAddition,
-                    }),
-                })
+        let responseData = null
 
-                let responseText = await response.text()
+        try {
+            let response = await fetch('/api/postcodenl', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    postcode: zipcode,
+                    house_number: houseNumber,
+                    house_number_addition: houseNumberAddition,
+                }),
+            })
 
-                responseData = JSON.parse(responseText)
-            } catch (error) {
-                console.error(error)
-                responseData = null
-            }
+            let responseText = await response.text()
 
-            this.setAddressState(false)
+            responseData = JSON.parse(responseText)
+        } catch (error) {
+            console.error(error)
+            responseData = null
+        }
 
-            if (responseData && responseData.city && responseData.street) {
-                this.streetElement.value = responseData.street
-                this.cityElement.value = responseData.city
-            } else {
-                this.clearAddress()
-            }
+        this.setAddressState(streetElement, cityElement, false)
+
+        if (responseData && responseData.city && responseData.street) {
+            streetElement.value = responseData.street
+            cityElement.value = responseData.city
+        } else {
+            this.clearAddress(streetElement, cityElement)
         }
     },
 })
