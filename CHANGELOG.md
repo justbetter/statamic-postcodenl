@@ -1,6 +1,11 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/justbetter/statamic-postcodenl/compare/4.0.2...master)
+[Unreleased changes](https://github.com/justbetter/statamic-postcodenl/compare/4.0.3...master)
+## [4.0.3](https://github.com/justbetter/statamic-postcodenl/releases/tag/4.0.3) - 2026-06-03
+
+### Fixed
+- Fixed postcode field lookup for hidden fields (#10)
+
 ## [4.0.2](https://github.com/justbetter/statamic-postcodenl/releases/tag/4.0.2) - 2026-04-09
 
 ### Fixed
